@@ -50,7 +50,7 @@ mod slow_sort;
 mod franceschinis_method_sort;
 mod thorups_algorithm_sort;
 
-const LEN: usize = 100;
+const LEN: usize=100;
 const N_ALG:usize=46;
 
 fn main() { //Considerar  generar threads para cada algoritmo, para intentar que todos se hagan por separado 
@@ -83,11 +83,24 @@ fn main() { //Considerar  generar threads para cada algoritmo, para intentar que
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
-    let mut arr_trabajo=[0;LEN];
     
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    mergesort::top_down_mergesort(&mut aux,&mut arr_trabajo, 0, LEN);
+    mergesort::top_down_mergesort(&mut aux, 0, LEN);
     println!("Algoritmo: top-down Merge sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
+    assert_eq!(aux, arr);
+
+    aux = shuffle_arr.clone();
+
+    let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
+    mergesort::bottom_up_merge_sort(&mut aux, 0, LEN);
+    println!("Algoritmo: bottom-up Merge sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
+    assert_eq!(aux, arr);
+
+    aux = shuffle_arr.clone();
+
+    let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
+    mergesort::in_place_mergesort(&mut aux, 0, LEN);
+    println!("Algoritmo: in-place Merge sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 }
 
