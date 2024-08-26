@@ -138,7 +138,13 @@ fn main() { //Considerar  generar threads para cada algoritmo, para intentar que
     println!("Algoritmo: cocktail sort(optimized)\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
      */
-    
+
+    aux = shuffle_arr.clone();
+
+    let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
+    quicksort::lomuto_partition_quicksort(&mut aux, 0, LEN);
+    println!("Algoritmo: quicksort(lomuto partition scheme)\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
+    assert_eq!(aux, arr);
 }
 
 fn shuffle(mut arr: [i32; LEN]) -> [i32; LEN] {
