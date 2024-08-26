@@ -19,7 +19,6 @@ mod exchange_sort;
 mod timsort;
 mod pidgeonhole_sort;
 mod cycle_sort;
-mod cockatil_sort;
 mod strand_sort;
 mod bitonic_sort;
 mod pancake_sort;
@@ -49,6 +48,7 @@ mod bitonic_merge_sort;
 mod slow_sort;
 mod franceschinis_method_sort;
 mod thorups_algorithm_sort;
+mod cocktail_sort;
 
 const LEN: usize=100;
 const N_ALG:usize=46;
@@ -102,6 +102,43 @@ fn main() { //Considerar  generar threads para cada algoritmo, para intentar que
     mergesort::in_place_mergesort(&mut aux, 0, LEN);
     println!("Algoritmo: in-place Merge sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
+
+    aux = shuffle_arr.clone();
+
+    let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
+    bubble_sort::bubble_sort(&mut aux, 0, LEN);
+    println!("Algoritmo: bubble sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
+    assert_eq!(aux, arr);
+
+    aux = shuffle_arr.clone();
+
+    let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
+    bubble_sort::bubble_sort_optimized_1(&mut aux, 0, LEN);
+    println!("Algoritmo: bubble sort (optimized 1)\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
+    assert_eq!(aux, arr);
+
+    aux = shuffle_arr.clone();
+
+    let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
+    bubble_sort::bubble_sort_optimized_2(&mut aux, 0, LEN);
+    println!("Algoritmo: bubble sort (optimized 2)\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
+    assert_eq!(aux, arr);
+
+    aux = shuffle_arr.clone();
+
+    let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
+    cocktail_sort::cocktail_sort(&mut aux, 0, LEN);
+    println!("Algoritmo: cocktail sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
+    assert_eq!(aux, arr);
+    /*
+    aux = shuffle_arr.clone();
+
+    let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
+    cocktail_sort::cocktail_sort_optimized(&mut aux, 0, LEN);
+    println!("Algoritmo: cocktail sort(optimized)\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
+    assert_eq!(aux, arr);
+     */
+    
 }
 
 fn shuffle(mut arr: [i32; LEN]) -> [i32; LEN] {
