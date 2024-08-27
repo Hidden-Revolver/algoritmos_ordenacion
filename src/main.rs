@@ -3,52 +3,7 @@ use std::time::Instant;
 
 use rand::Rng;
 
-mod insertion_sort;
-mod selection_sort;
-mod mergesort;
-mod heapsort;
-mod quicksort;
-mod shellsort;
-mod gnome_sort;
-mod counting_sort;
-mod bucket_sort;
-mod radix_sort;
-mod bubble_sort;
-mod comb_sort;
-mod exchange_sort;
-mod timsort;
-mod pidgeonhole_sort;
-mod cycle_sort;
-mod strand_sort;
-mod bitonic_sort;
-mod pancake_sort;
-mod bogo_sort;
-mod sleep_sort;
-mod stooge_sort;
-mod tree_sort;
-mod brick_sort;
-mod introsort;
-mod tournament_sort;
-mod block_sort;
-mod smoothsort;
-mod patience_sort;
-mod cube_sort;
-mod library_sort;
-mod odd_even_sort;
-mod spread_sort;
-mod burstsort;
-mod flashsort;
-mod postman_sort;
-mod bead_sort;
-mod merge_insertion_sort;
-mod i_cant_believe_it_can_sort_sort;
-mod spaghetti_sort;
-mod network_sort;
-mod bitonic_merge_sort;
-mod slow_sort;
-mod franceschinis_method_sort;
-mod thorups_algorithm_sort;
-mod cocktail_sort;
+mod algorithms;
 
 const LEN: usize=100;
 const N_ALG:usize=46;
@@ -64,72 +19,72 @@ fn main() { //Considerar  generar threads para cada algoritmo, para intentar que
     
     let mut aux = shuffle_arr.clone();
     let inicio = Instant::now();
-    selection_sort::selection_sort(&mut aux, 0, LEN);
+    algorithms::selection_sort::selection_sort(&mut aux, 0, LEN);
     println!("Algoritmo: Selection sort\n  {:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
-
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now();
-    insertion_sort::insertion_sort(&mut aux, 0, LEN);
+    algorithms::insertion_sort::insertion_sort(&mut aux, 0, LEN);
     println!("Algoritmo. Insertion sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now();
-    gnome_sort::gnome_sort(&mut aux, 0, LEN);
+    algorithms::gnome_sort::gnome_sort(&mut aux, 0, LEN);
     println!("Algoritmo: Gnome sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
     
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    mergesort::top_down_mergesort(&mut aux, 0, LEN);
+    algorithms::mergesort::top_down_mergesort(&mut aux, 0, LEN);
     println!("Algoritmo: top-down Merge sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    mergesort::bottom_up_merge_sort(&mut aux, 0, LEN);
+    algorithms::mergesort::bottom_up_merge_sort(&mut aux, 0, LEN);
     println!("Algoritmo: bottom-up Merge sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    mergesort::in_place_mergesort(&mut aux, 0, LEN);
+    algorithms::mergesort::in_place_mergesort(&mut aux, 0, LEN);
     println!("Algoritmo: in-place Merge sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    bubble_sort::bubble_sort(&mut aux, 0, LEN);
+    algorithms::bubble_sort::bubble_sort(&mut aux, 0, LEN);
     println!("Algoritmo: bubble sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    bubble_sort::bubble_sort_optimized_1(&mut aux, 0, LEN);
+    algorithms::bubble_sort::bubble_sort_optimized_1(&mut aux, 0, LEN);
     println!("Algoritmo: bubble sort (optimized 1)\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    bubble_sort::bubble_sort_optimized_2(&mut aux, 0, LEN);
+    algorithms::bubble_sort::bubble_sort_optimized_2(&mut aux, 0, LEN);
     println!("Algoritmo: bubble sort (optimized 2)\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    cocktail_sort::cocktail_sort(&mut aux, 0, LEN);
+    algorithms::cocktail_sort::cocktail_sort(&mut aux, 0, LEN);
     println!("Algoritmo: cocktail sort\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
+    
     /*
     aux = shuffle_arr.clone();
 
@@ -142,7 +97,7 @@ fn main() { //Considerar  generar threads para cada algoritmo, para intentar que
     aux = shuffle_arr.clone();
 
     let inicio = Instant::now(); // Causa un overflow del stack, ya que al utilizar el tipo de dato vec!, que es un tipo dinamico(se utiliza para asignar el tamaño de los vectores de forma dinamica), gasta mas recursos del stack.
-    quicksort::lomuto_partition_quicksort(&mut aux, 0, LEN);
+    algorithms::quicksort::lomuto_partition_quicksort(&mut aux, 0, LEN);
     println!("Algoritmo: quicksort(lomuto partition scheme)\n{:?}\nTiempo ordenación: {:?}\n", aux, inicio.elapsed());
     assert_eq!(aux, arr);
 }
