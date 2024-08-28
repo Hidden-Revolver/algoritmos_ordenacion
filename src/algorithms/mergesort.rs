@@ -1,5 +1,20 @@
 use crate::LEN;
 
+/// 
+/// 
+/// # Arguments 
+/// 
+/// * `arr`: 
+/// * `start`: 
+/// * `end`: 
+/// 
+/// returns: () 
+/// 
+/// # Examples 
+/// 
+/// ```
+/// 
+/// ```
 pub fn top_down_mergesort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usize) {
     if end - start > 1 {
         let mid = (start + end) / 2;
@@ -9,6 +24,21 @@ pub fn top_down_mergesort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usize
     }
 }
 
+/// 
+/// 
+/// # Arguments 
+/// 
+/// * `arr`: 
+/// * `start`: 
+/// * `end`: 
+/// 
+/// returns: () 
+/// 
+/// # Examples 
+/// 
+/// ```
+/// 
+/// ```
 pub fn bottom_up_merge_sort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usize) {
     let mut width = 1;
     let n = end - start;
@@ -30,6 +60,21 @@ pub fn bottom_up_merge_sort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usi
     }
 }
 
+/// 
+/// 
+/// # Arguments 
+/// 
+/// * `arr`: 
+/// * `start`: 
+/// * `end`: 
+/// 
+/// returns: () 
+/// 
+/// # Examples 
+/// 
+/// ```
+/// 
+/// ```
 pub fn in_place_mergesort<T: Ord>(arr: &mut [T],start:usize,end:usize) {
     
     let mut width = 1;

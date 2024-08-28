@@ -1,6 +1,6 @@
 
 /// Funcion Quicksort con metodo de particion de lomuto
-/// FIXME No funciona correctamente, debe realizarse un analisis al respecto
+/// 
 /// # Arguments 
 /// 
 /// * `arr`: array a ordenar
@@ -14,30 +14,93 @@
 /// ```
 /// 
 /// ```
-pub fn lomuto_partition_quicksort(arr:&mut [i32],start:usize,end:usize){
-    if start>=end{
-        return;
+pub fn lomuto_partition_quicksort<T: Ord>(arr:&mut [T],start:usize,end:usize){
+    if end>start{
+        let p_pivot:usize=lomuto_partition(arr,start,end);
+        lomuto_partition_quicksort(arr,start,p_pivot-1);
+        lomuto_partition_quicksort(arr,p_pivot+1,end);
     }
-    let p=lomuto_partition(arr,start,end-1);
-    if p>0{
-        lomuto_partition_quicksort(arr,start,p-1);
-    }
-    lomuto_partition_quicksort(arr,p+1,end);
 }
-fn lomuto_partition(arr:&mut [i32],start:usize,end:usize) -> usize{
-    let p_pivot = arr[end];
-    let mut i = start;
-
-    for j in start..end {
-        if arr[j] <= p_pivot {
-            arr.swap(i, j);
-            i=i+1;
+/// 
+/// 
+/// # Arguments 
+/// 
+/// * `arr`: 
+/// * `start`: 
+/// * `end`: 
+/// 
+/// returns: usize 
+/// 
+/// # Examples 
+/// 
+/// ```
+/// 
+/// ```
+fn lomuto_partition<T: Ord>(arr:&mut [T],start:usize,end:usize) -> usize{
+    let mut tmp_ind=start;
+    for i in start..end{
+        if arr[i]<=arr[end] {
+            arr.swap(tmp_ind,i);
+            tmp_ind=tmp_ind+1;
         }
     }
-
-    arr.swap(i, end);
-    return i;
+    arr.swap(end,tmp_ind);
+    return tmp_ind;
 }
+/// 
+/// 
+/// # Arguments 
+/// 
+/// * `arr`: 
+/// * `start`: 
+/// * `end`: 
+/// 
+/// returns: () 
+/// 
+/// # Examples 
+/// 
+/// ```
+/// 
+/// ```
 pub fn hoare_partition_quicksort<T:Ord>(arr:&mut [T],start:usize,end:usize){
+    if end>start{
+        let p_pivot:usize=hoare_partition(arr,start,end);
+        hoare_partition_quicksort(arr,start,p_pivot);
+        hoare_partition_quicksort(arr,p_pivot+1,end);
+    }
+}
 
+/// Método de partición de hoare, mínimamente modificado, sirve para obtener el punto de pivote que luego se puede utilizar en Quicksort
+/// 
+/// # Arguments 
+/// 
+/// * `arr`: Array de números a ordenar.
+/// * `start`: Indice de inicio por el que empezar a ordenar.
+/// * `end`: Indice que indica hasta donde ordenar del Array.
+/// 
+/// returns: usize
+/// 
+/// # Examples 
+/// 
+/// ```rust
+/// let mut arr:[i32;10] = [1,2,3,4,5,6,7,8,9,10];
+/// let start=0;
+/// let start=10;
+/// let p_pivot:usize = hoare_partition(arr,start,end);
+/// ```
+fn hoare_partition<T:Ord>(arr:&mut [T],start:usize,end:usize)->usize{
+    let mut tmp_ind_1:usize=start;
+    let mut tmp_ind_2:usize=end;
+    loop{
+        while arr[tmp_ind_1]<arr[start]{
+            tmp_ind_1=tmp_ind_1+1;
+        }
+        while arr[tmp_ind_2]>arr[start]{
+            tmp_ind_2=tmp_ind_2-1;
+        }
+        if tmp_ind_1>=tmp_ind_2{
+            return tmp_ind_2;
+        }
+        arr.swap(tmp_ind_1,tmp_ind_2);
+    }
 }

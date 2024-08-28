@@ -1,4 +1,19 @@
 
+/// 
+/// 
+/// # Arguments 
+/// 
+/// * `arr`: 
+/// * `start`: 
+/// * `end`: 
+/// 
+/// returns: () 
+/// 
+/// # Examples 
+/// 
+/// ```
+/// 
+/// ```
 pub fn cocktail_sort<T: Ord>(arr: &mut [T], start: usize, end: usize) {
     let mut ord: bool = false;
     while !ord {

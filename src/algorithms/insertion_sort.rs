@@ -1,6 +1,19 @@
-/**
-Este algoritmo utiliza la implementación clasica del insertion sort
- **/
+
+/// 
+/// 
+/// # Arguments 
+/// 
+/// * `arr`: 
+/// * `start`: 
+/// * `end`: 
+/// 
+/// returns: () 
+/// 
+/// # Examples 
+/// 
+/// ```
+/// 
+/// ```
 pub fn insertion_sort(arr: &mut [i32], start: usize, end: usize) {
     for i in start..end {
         let t = arr[i];
