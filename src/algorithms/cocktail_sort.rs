@@ -39,7 +39,7 @@ pub fn cocktail_sort<T: Ord>(arr: &mut [T], start: usize, end: usize) {
 /**
 FIXME Esta funcion no funciona como deberia asi que se programará en un futuro
 **/
-pub fn cocktail_sort_optimized<T:Ord>(arr:&mut[T],mut start:usize,mut end:usize){
+pub fn _cocktail_sort_optimized<T:Ord>(arr:&mut[T],mut start:usize,mut end:usize){
     while start<=end {
         let mut aux_start:usize=start;
         let mut aux_end:usize=end;

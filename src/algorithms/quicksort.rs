@@ -14,7 +14,7 @@
 /// ```
 /// 
 /// ```
-pub fn lomuto_partition_quicksort<T: Ord>(arr:&mut [T],start:usize,end:usize){
+pub fn lomuto_partition_quicksort<T: Ord>(arr:&mut [T],start:usize,end:usize){ // Algunas veces causa overflow
     if end>start{
         let p_pivot:usize=lomuto_partition(arr,start,end);
         lomuto_partition_quicksort(arr,start,p_pivot-1);
@@ -41,11 +41,11 @@ fn lomuto_partition<T: Ord>(arr:&mut [T],start:usize,end:usize) -> usize{
     for i in start..end{
         if arr[i]<=arr[end] {
             arr.swap(tmp_ind,i);
-            tmp_ind=tmp_ind+1;
+            tmp_ind += 1;
         }
     }
     arr.swap(end,tmp_ind);
-    return tmp_ind;
+    tmp_ind
 }
 /// 
 /// 
@@ -84,8 +84,8 @@ pub fn hoare_partition_quicksort<T:Ord>(arr:&mut [T],start:usize,end:usize){
 /// 
 /// ```rust
 /// let mut arr:[i32;10] = [1,2,3,4,5,6,7,8,9,10];
-/// let start=0;
-/// let start=10;
+/// let start:usize = 0;
+/// let start:usize = 10;
 /// let p_pivot:usize = hoare_partition(arr,start,end);
 /// ```
 fn hoare_partition<T:Ord>(arr:&mut [T],start:usize,end:usize)->usize{
@@ -93,10 +93,10 @@ fn hoare_partition<T:Ord>(arr:&mut [T],start:usize,end:usize)->usize{
     let mut tmp_ind_2:usize=end;
     loop{
         while arr[tmp_ind_1]<arr[start]{
-            tmp_ind_1=tmp_ind_1+1;
+            tmp_ind_1 += 1;
         }
         while arr[tmp_ind_2]>arr[start]{
-            tmp_ind_2=tmp_ind_2-1;
+            tmp_ind_2 -= 1;
         }
         if tmp_ind_1>=tmp_ind_2{
             return tmp_ind_2;

@@ -21,7 +21,7 @@ pub fn bubble_sort_optimized_1<T:Ord>(arr:&mut[T],start:usize,mut end:usize){
                 ord=false;
             }
         }
-        end = end -1;
+        end -= 1;
     }
 }
 
