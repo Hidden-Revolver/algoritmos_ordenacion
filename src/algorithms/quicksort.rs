@@ -16,7 +16,7 @@
 pub fn lomuto_partition_quicksort<T: Ord>(arr: &mut [T], start: usize, end: usize) {
     if end > start {
         let p_pivot: usize = lomuto_partition(arr, start, end);
-        lomuto_partition_quicksort(arr, start, p_pivot - 1); // Algunas veces causa overflow al hacer p_pivot-1, pero al hacer que p_pivot siempre sea mayor que 0, el algoritmo deja de organizar correctamente
+        lomuto_partition_quicksort(arr, start, p_pivot - 1); // FIXME Algunas veces causa overflow al hacer p_pivot-1, pero al hacer que p_pivot siempre sea mayor que 0, el algoritmo deja de organizar correctamente
         lomuto_partition_quicksort(arr, p_pivot + 1, end);
     }
 }
