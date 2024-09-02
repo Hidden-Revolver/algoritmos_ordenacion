@@ -5,7 +5,7 @@ use rand::Rng;
 
 mod algorithms;
 
-const LEN: usize = 100;
+const LEN: usize = 128;
 const _N_ALG: usize = 46;
 
 fn main() {
@@ -157,6 +157,17 @@ fn main() {
     algorithms::quicksort::hoare_partition_quicksort(&mut aux, 0, LEN - 1);
     println!(
         "Algoritmo: quicksort(hoare partition scheme)\n{:?}\nTiempo ordenación: {:?}\n",
+        aux,
+        inicio.elapsed()
+    );
+    assert_eq!(aux, arr);
+
+    aux = shuffle_arr;
+
+    let inicio = Instant::now();
+    algorithms::bitonic_merge_sort::bitonic_sort_power_of_two(&mut aux, 0, LEN-1);
+    println!(
+        "Algoritmo: bitonic merge sort (power of two lists)\n{:?}\nTiempo ordenación: {:?}\n",
         aux,
         inicio.elapsed()
     );

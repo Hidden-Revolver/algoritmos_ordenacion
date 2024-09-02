@@ -1,6 +1,5 @@
 pub mod bead_sort;
 pub mod bitonic_merge_sort;
-pub mod bitonic_sort;
 pub mod block_sort;
 pub mod bogo_sort;
 pub mod brick_sort;
