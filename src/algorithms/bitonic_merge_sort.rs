@@ -1,4 +1,24 @@
 
+pub fn bitonic_sort_not_power_of_two(arr: &mut [i32], start: usize, end: usize) {
+    let n = end - start + 1;
+    let padded_len = n.next_power_of_two();
+    let max_value = *arr[start..=end].iter().max().unwrap();
+
+    // Create a new array with padding
+    let mut padded_arr = vec![max_value; padded_len];
+    padded_arr[..n].copy_from_slice(&arr[start..=end]);
+
+    for k in 1..=padded_len.trailing_zeros() {
+        let k = 1 << k; // 2^k
+        for j in (0..padded_len).step_by(k) {
+            bitonic_merge(&mut padded_arr, j, k, j & k != 0);
+        }
+    }
+    // Copy sorted elements back to the original array
+    arr[start..=end].copy_from_slice(&padded_arr[..n]);
+    arr.reverse();
+}
+
 pub fn bitonic_sort_power_of_two(arr: &mut [i32], start: usize, end: usize) {
     let n = end - start + 1;
     assert!(n.is_power_of_two(), "Length of the range to be sorted must be a power of two");
