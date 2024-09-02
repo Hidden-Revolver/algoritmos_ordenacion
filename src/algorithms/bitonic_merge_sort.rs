@@ -1,4 +1,3 @@
-
 pub fn bitonic_sort_not_power_of_two(arr: &mut [i32], start: usize, end: usize) {
     let n = end - start + 1;
     let padded_len = n.next_power_of_two();
@@ -21,7 +20,10 @@ pub fn bitonic_sort_not_power_of_two(arr: &mut [i32], start: usize, end: usize) 
 
 pub fn bitonic_sort_power_of_two(arr: &mut [i32], start: usize, end: usize) {
     let n = end - start + 1;
-    assert!(n.is_power_of_two(), "Length of the range to be sorted must be a power of two");
+    assert!(
+        n.is_power_of_two(),
+        "Length of the range to be sorted must be a power of two"
+    );
 
     for k in 1..=n.trailing_zeros() {
         let k = 1 << k; // 2^k

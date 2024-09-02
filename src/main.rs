@@ -165,7 +165,7 @@ fn main() {
     aux = shuffle_arr;
 
     let inicio = Instant::now();
-    algorithms::bitonic_merge_sort::bitonic_sort_power_of_two(&mut aux, 0, LEN-1);
+    algorithms::bitonic_merge_sort::bitonic_sort_power_of_two(&mut aux, 0, LEN - 1);
     println!(
         "Algoritmo: bitonic merge sort (power of two length lists)\n{:?}\nTiempo ordenación: {:?}\n",
         aux,
@@ -176,7 +176,7 @@ fn main() {
     aux = shuffle_arr;
 
     let inicio = Instant::now();
-    algorithms::bitonic_merge_sort::bitonic_sort_not_power_of_two(&mut aux, 0, LEN-1);
+    algorithms::bitonic_merge_sort::bitonic_sort_not_power_of_two(&mut aux, 0, LEN - 1);
     println!(
         "Algoritmo: bitonic merge sort (not power of two length lists)\n{:?}\nTiempo ordenación: {:?}\n",
         aux,
