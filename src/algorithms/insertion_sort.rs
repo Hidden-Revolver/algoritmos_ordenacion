@@ -1,18 +1,17 @@
-
-/// 
-/// 
-/// # Arguments 
-/// 
-/// * `arr`: 
-/// * `start`: 
-/// * `end`: 
-/// 
-/// returns: () 
-/// 
-/// # Examples 
-/// 
+///
+///
+/// # Arguments
+///
+/// * `arr`:
+/// * `start`:
+/// * `end`:
+///
+/// returns: ()
+///
+/// # Examples
+///
 /// ```
-/// 
+///
 /// ```
 pub fn insertion_sort(arr: &mut [i32], start: usize, end: usize) {
     for i in start..end {

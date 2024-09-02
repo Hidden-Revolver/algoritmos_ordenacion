@@ -1,19 +1,19 @@
 use crate::LEN;
 
-/// 
-/// 
-/// # Arguments 
-/// 
-/// * `arr`: 
-/// * `start`: 
-/// * `end`: 
-/// 
-/// returns: () 
-/// 
-/// # Examples 
-/// 
+///
+///
+/// # Arguments
+///
+/// * `arr`:
+/// * `start`:
+/// * `end`:
+///
+/// returns: ()
+///
+/// # Examples
+///
 /// ```
-/// 
+///
 /// ```
 pub fn top_down_mergesort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usize) {
     if end - start > 1 {
@@ -24,20 +24,20 @@ pub fn top_down_mergesort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usize
     }
 }
 
-/// 
-/// 
-/// # Arguments 
-/// 
-/// * `arr`: 
-/// * `start`: 
-/// * `end`: 
-/// 
-/// returns: () 
-/// 
-/// # Examples 
-/// 
+///
+///
+/// # Arguments
+///
+/// * `arr`:
+/// * `start`:
+/// * `end`:
+///
+/// returns: ()
+///
+/// # Examples
+///
 /// ```
-/// 
+///
 /// ```
 pub fn bottom_up_merge_sort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usize) {
     let mut width = 1;
@@ -54,40 +54,43 @@ pub fn bottom_up_merge_sort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usi
                 merge(arr, left, mid, right);
             }
 
-            i=i+(2*width);
+            i = i + (2 * width);
         }
-        width = width*2;
+        width = width * 2;
     }
 }
 
-/// 
-/// 
-/// # Arguments 
-/// 
-/// * `arr`: 
-/// * `start`: 
-/// * `end`: 
-/// 
-/// returns: () 
-/// 
-/// # Examples 
-/// 
+///
+///
+/// # Arguments
+///
+/// * `arr`:
+/// * `start`:
+/// * `end`:
+///
+/// returns: ()
+///
+/// # Examples
+///
 /// ```
-/// 
+///
 /// ```
-pub fn in_place_mergesort<T: Ord>(arr: &mut [T],start:usize,end:usize) {
-    
+pub fn in_place_mergesort<T: Ord>(arr: &mut [T], start: usize, end: usize) {
     let mut width = 1;
     while width < end {
         let mut i = start;
         while i < end {
             let left = i;
             let mid = i + width;
-            let right = if i + 2 * width > end { end } else { i + 2 * width };
+            let right = if i + 2 * width > end {
+                end
+            } else {
+                i + 2 * width
+            };
             in_place_merge(arr, left, mid, right);
-            i =i+(2*width);
+            i = i + (2 * width);
         }
-        width=width*2;
+        width = width * 2;
     }
 }
 
@@ -112,24 +115,24 @@ fn merge<T: Ord + Copy>(arr: &mut [T], start: usize, mid: usize, end: usize) {
     while i < left_len && j < right_len {
         if left[i] <= right[j] {
             arr[k] = left[i];
-            i=i+1;
+            i = i + 1;
         } else {
             arr[k] = right[j];
-            j=j+1;
+            j = j + 1;
         }
-        k=k+1;
+        k = k + 1;
     }
 
     while i < left_len {
         arr[k] = left[i];
-        i=i+1;
-        k=k+1;
+        i = i + 1;
+        k = k + 1;
     }
 
     while j < right_len {
         arr[k] = right[j];
-        j=j+1;
-        k=k+1;
+        j = j + 1;
+        k = k + 1;
     }
 }
 
@@ -138,15 +141,15 @@ fn in_place_merge<T: Ord>(arr: &mut [T], left: usize, mid: usize, right: usize) 
     let mut j = mid;
     while i < j && j < right {
         if arr[i] <= arr[j] {
-            i=i+1;
+            i = i + 1;
         } else {
             let mut k = j;
             while k > i {
                 arr.swap(k, k - 1);
-                k=k-1;
+                k = k - 1;
             }
-            i=i+1;
-            j=j+1;
+            i = i + 1;
+            j = j + 1;
         }
     }
 }

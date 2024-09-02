@@ -1,20 +1,19 @@
-
-/// 
-/// 
-/// # Arguments 
-/// 
-/// * `arr`: 
-/// * `start`: 
-/// * `end`: 
-/// 
-/// returns: () 
-/// 
-/// # Examples 
-/// 
+///
+///
+/// # Arguments
+///
+/// * `arr`:
+/// * `start`:
+/// * `end`:
+///
+/// returns: ()
+///
+/// # Examples
+///
 /// ```
-/// 
+///
 /// ```
-pub fn gnome_sort<T:Ord>(arr: &mut [T], start: usize, end: usize) {
+pub fn gnome_sort<T: Ord>(arr: &mut [T], start: usize, end: usize) {
     let mut i = start + 1;
     while i < end {
         if arr[i - 1] <= arr[i] {
