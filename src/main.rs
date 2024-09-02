@@ -183,6 +183,17 @@ fn main() {
         inicio.elapsed()
     );
     assert_eq!(aux, arr);
+
+    aux = shuffle_arr;
+
+    let inicio = Instant::now();
+    algorithms::heapsort::heapsort(&mut aux, 0, LEN - 1);
+    println!(
+        "Algoritmo: heap sort\n{:?}\nTiempo ordenación: {:?}\n",
+        aux,
+        inicio.elapsed()
+    );
+    assert_eq!(aux, arr);
 }
 
 fn shuffle(mut arr: [i32; LEN]) -> [i32; LEN] {
