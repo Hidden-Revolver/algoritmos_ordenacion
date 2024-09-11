@@ -1,9 +1,9 @@
-//FIXME necesita arreglarse heapsort
+//FIXME necesita arreglarse heapsort ya esta casi
 pub fn heapsort(arr: &mut [i32], start:usize, end:usize){
-    for i in (end/2)-1..=start{
+    for i in (start..(end/2)).rev(){
         heapify(arr,end,i);
     }
-    for i in end-1..=start{
+    for i in (start..end-1).rev(){
         arr.swap(start,i);
         heapify(arr,i,start);
     }
