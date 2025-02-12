@@ -187,9 +187,18 @@ fn main() {
     aux = shuffle_arr;
 
     let inicio = Instant::now();
-    algorithms::heapsort::heapsort(&mut aux, 0, LEN - 1);
+    algorithms::heapsort::heapsort(&mut aux, 0, LEN - 1); // FIXME ESTE TAMBIEN FALLA
     println!(
         "Algoritmo: heap sort\n{:?}\nTiempo ordenación: {:?}\n",
+        aux,
+        inicio.elapsed()
+    );
+    assert_eq!(aux, arr);
+
+    let inicio = Instant::now();
+    algorithms::bead_sort::sort(&mut aux,0,LEN-1);// FIXME NO FUNCIONA, debo arreglarlo
+    println!(
+        "Algoritmo: bead sort\n{:?}\nTiempo ordenación: {:?}\n",
         aux,
         inicio.elapsed()
     );

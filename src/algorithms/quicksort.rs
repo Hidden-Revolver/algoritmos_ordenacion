@@ -13,10 +13,12 @@
 /// ```
 ///
 /// ```
-pub fn lomuto_partition_quicksort<T: Ord>(arr: &mut [T], start: usize, end: usize) {
+pub fn lomuto_partition_quicksort<T: Ord + Copy>(arr: &mut [T], start: usize, end: usize) {
     if end > start {
         let p_pivot: usize = lomuto_partition(arr, start, end);
-        lomuto_partition_quicksort(arr, start, p_pivot - 1); // FIXME Algunas veces causa overflow al hacer p_pivot-1, pero al hacer que p_pivot siempre sea mayor que 0, el algoritmo deja de organizar correctamente
+        if p_pivot > start {
+            lomuto_partition_quicksort(arr, start, p_pivot - 1);
+        }
         lomuto_partition_quicksort(arr, p_pivot + 1, end);
     }
 }
@@ -36,6 +38,7 @@ pub fn lomuto_partition_quicksort<T: Ord>(arr: &mut [T], start: usize, end: usiz
 /// ```
 ///
 /// ```
+/*
 fn lomuto_partition<T: Ord>(arr: &mut [T], start: usize, end: usize) -> usize {
     let mut tmp_ind = start;
     for i in start..end {
@@ -46,6 +49,19 @@ fn lomuto_partition<T: Ord>(arr: &mut [T], start: usize, end: usize) -> usize {
     }
     arr.swap(end, tmp_ind);
     tmp_ind
+}
+ */
+fn lomuto_partition<T: Ord + Copy>(arr: &mut [T], start: usize, end: usize) -> usize {
+    let p_pivot = arr[end];
+    let mut i = start;
+    for j in start..end {
+        if arr[j] <= p_pivot {
+            arr.swap(i, j);
+            i += 1;
+        }
+    }
+    arr.swap(i, end);
+    i
 }
 ///
 ///
